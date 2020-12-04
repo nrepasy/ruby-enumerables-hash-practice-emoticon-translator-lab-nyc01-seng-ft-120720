@@ -17,20 +17,18 @@ def load_library(file_path)
 end
 
 
-def get_japanese_emoticon(path, emoticon)
-  emoticon_hash = load_library(path)
-  result = emoticon_hash["get_emoticon"][emoticon]
-  if result == nil
-    result = "Sorry, that emoticon was not found" 
+def get_japanese_emoticon(file_path, emoticon)
+  library = load_library(file_path)
+  emoticon = library.keys.find do |key|
+    library[key][:english] == emoticon
   end
-  result
+  emoticon ? library[emoticon][:japanese] : "Sorry, that emoticon was not found"
 end
 
-def get_english_meaning(path, emoticon)
-  emoticon_hash = load_library(path)
-  result = emoticon_hash["get_meaning"][emoticon]
-  if result == nil
-    result = "Sorry, that emoticon was not found" 
+def get_english_meaning(file_path, emoticon)
+  library = load_library(file_path)
+  emoticon = library.keys.find do |key|
+    library[key][:japanese] == emoticon
   end
-  result
+  emoticon ? emoticon : "Sorry, that emoticon was not found"
 end
