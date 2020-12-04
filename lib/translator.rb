@@ -18,17 +18,17 @@ end
 
 
 def get_japanese_emoticon(path, emoticon)
-  library = load_library(path)
-  emoticon = library.keys.find do |key|
-    library[key][:english] == emoticon
+  text = load_library(path)
+  emoticon = text.keys.find do |key|
+    text[key][:english] == emoticon
   end
-  emoticon ? library[emoticon][:japanese] : "Sorry, that emoticon was not found"
+  emoticon ? text[emoticon][:japanese] : "Sorry, that emoticon was not found"
 end
 
 def get_english_meaning(path, emoticon)
-  library = load_library(path)
-  emoticon = library.keys.find do |key|
-    library[key][:japanese] == emoticon
+  text = load_library(path)
+  emoticon = text.keys.find do |key|
+    text[key][:japanese] == emoticon
   end
   emoticon ? emoticon : "Sorry, that emoticon was not found"
 end
